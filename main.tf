@@ -1,12 +1,12 @@
 #this resource is for creating resource group
 resource "azurerm_resource_group" "kube-rg" {
   name     = "kube-rg-alpha"
-  location = "West US"
+  location = "East US2"
 }
 
 /* this resource is for creating azure container registry in the above RG*/
 resource "azurerm_container_registry" "acr_acr" {
-  name                = "acr00999"
+  name                = "acr0099"
   resource_group_name = azurerm_resource_group.kube-rg.name
   location            = azurerm_resource_group.kube-rg.location
   sku                 = "Basic"
@@ -14,10 +14,10 @@ resource "azurerm_container_registry" "acr_acr" {
 
 /* this resource is for creating AK8S CLUSTER in the above RG*/
 resource "azurerm_kubernetes_cluster" "acr_aks" {
-  name                = "acraks1"
+  name                = "azk8sclstr999"
   location            = azurerm_resource_group.kube-rg.location
   resource_group_name = azurerm_resource_group.kube-rg.name
-  dns_prefix          = "acraks1"
+  dns_prefix          = "azk8sclstr999"
 
   default_node_pool {
     name       = "default"
