@@ -1,4 +1,4 @@
-/* this resource is for creating resource group*/
+#this resource is for creating resource group
 resource "azurerm_resource_group" "kube-rg" {
   name     = "kube-rg-alpha"
   location = "West US"
@@ -6,7 +6,7 @@ resource "azurerm_resource_group" "kube-rg" {
 
 /* this resource is for creating azure container registry in the above RG*/
 resource "azurerm_container_registry" "acr_acr" {
-  name                = "acrk8s009"
+  name                = "acr00999"
   resource_group_name = azurerm_resource_group.kube-rg.name
   location            = azurerm_resource_group.kube-rg.location
   sku                 = "Basic"
