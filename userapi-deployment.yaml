@@ -15,8 +15,8 @@ spec:
       nodeSelector:
         "kubernetes.io/os": linux
       containers:
-        - name: aks-userapi
-          image: mykubernetescontregistry.azurecr.io/aks-user-api-image:latest
+        - name: aks-userapi-alpha
+          image: acr00999.azurecr.io/userapi
           ports:
             - containerPort: 80
 ---
