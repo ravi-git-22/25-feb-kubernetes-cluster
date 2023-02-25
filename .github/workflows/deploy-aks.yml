@@ -54,7 +54,7 @@ jobs:
           password: ${{ secrets.ARM_CLIENT_SECRET }}
       - run: |
           cd UserApi
-          docker build . -t acr00999.azurecr.io/userapi
+          docker build -t acr00999.azurecr.io/userapi .
           docker push acr00999.azurecr.io/userapi
 
       - name: Set AKS context
