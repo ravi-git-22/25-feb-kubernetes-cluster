@@ -1,0 +1,30 @@
+docker build . -t <tag name>
+docker run --name <container-name> -d -p 8000:80 <image-name>
+
+az group create --name <resource-group-name> --location westeurope
+az acr create --resource-group <resource-group-name> --name <acr-name> --sku Basic
+
+az acr login --name <acr-name>
+az acr list --resource-group <resource-group-name> --query "[].{acrLoginServer:loginServer}" --output table
+
+docker tag <image-name> <acr-name>.azurecr.io/<image-name>
+docker push <acr-name>.azurecr.io/<image-name>
+
+az aks create --resource-group <resource-group-name> --name <aks-name> --node-count 2 --generate-ssh-keys --attach-acr <acr-name>
+
+az ad sp create-for-rbac --name "ownersecret" --scope /subscriptions/<subscription-id> --role Owner --sdk-auth
+az ad sp create-for-rbac --name "ownersecret" --role owner --scopes /subscriptions/e321cfbe-068e-4106-8c59-668e1d5e3140 --sdk-auth
+
+
+{
+  "clientId": "4aac1f93-5fb6-43f5-a31a-d0ad09c03ad5",
+  "clientSecret": "tdf8Q~XGIztiMJvZDdKovHijBXNeCGlz3E8hyceJ",
+  "subscriptionId": "e321cfbe-068e-4106-8c59-668e1d5e3140",
+  "tenantId": "1fb92e0e-59eb-4452-9ffe-0788dedc0f8a",
+  "activeDirectoryEndpointUrl": "https://login.microsoftonline.com",
+  "resourceManagerEndpointUrl": "https://management.azure.com/",
+  "activeDirectoryGraphResourceId": "https://graph.windows.net/",
+  "sqlManagementEndpointUrl": "https://management.core.windows.net:8443/",
+  "galleryEndpointUrl": "https://gallery.azure.com/",
+  "managementEndpointUrl": "https://management.core.windows.net/"
+}
